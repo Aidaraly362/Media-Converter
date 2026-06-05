@@ -228,4 +228,22 @@ def handle_callbacks(call):
             bot.send_message(chat_id, "❌ **Ошибка загрузки.** Возможно файл больше 50МБ.")
             print(f"Error: {e}")
 
-bot.polling(none_stop=True)
+import os
+from threading import Thread
+from flask import Flask
+
+app = Flask('')
+
+@app.route('/')
+def home():
+    return "Бот жұмыс істеп тұр!"
+
+def run():
+    app.run(host='0.0.0.0', port=int(os.environ.get('PORT', 5000)))
+
+# Серверді артқы фонда іске қосу (Render-ді алдау үшін)
+Thread(target=run).start()
+
+# Ботты іске қосу
+print("Бот сәтті қосылды...")
+bot.infinity_polling(timeout=10, long_polling_timeout=5)
