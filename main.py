@@ -262,6 +262,6 @@ def run():
 # Серверді артқы фонда іске қосу (Render-ді алдау үшін)
 Thread(target=run).start()
 
-# Ботты іске қосу
+# Ботты іске қосу (Күту уақытын 60 секундқа дейін ұзартамыз)
 print("Бот сәтті қосылды...")
-bot.infinity_polling(timeout=10, long_polling_timeout=5)
+bot.infinity_polling(timeout=60, long_polling_timeout=30)
